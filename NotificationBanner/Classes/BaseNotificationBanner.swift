@@ -292,9 +292,24 @@ open class BaseNotificationBanner: UIView {
     
     internal func updateBannerPositionFrames() {
         guard let window = appWindow else { return }
+        let width = 0
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let supportedOrientations = UIApplication.shared.supportedInterfaceOrientations(for: appWindow)
+            
+            switch UIDevice.current.orientation {
+            case .portrait, .portraitUpsideDown:
+                width = window.width
+            case .landscapeLeft, landscapeRight:
+                width = window.height
+            default:
+                break
+            }
+        } else {
+            width = window.width
+        }
         bannerPositionFrame = BannerPositionFrame(
             bannerPosition: bannerPosition,
-            bannerWidth: window.width,
+            bannerWidth: width,
             bannerHeight: bannerHeight,
             maxY: maximumYPosition(),
             finishYOffset: finishBannerYOffset(),
