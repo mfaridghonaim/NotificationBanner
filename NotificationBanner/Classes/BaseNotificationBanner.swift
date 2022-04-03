@@ -292,7 +292,7 @@ open class BaseNotificationBanner: UIView {
     
     internal func updateBannerPositionFrames() {
         guard let window = appWindow else { return }
-        let width = 0
+        var width: CGFloat = 0
         if UIDevice.current.userInterfaceIdiom == .pad {
             let supportedOrientations = UIApplication.shared.supportedInterfaceOrientations(for: appWindow)
             
