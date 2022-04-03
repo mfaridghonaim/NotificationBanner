@@ -298,9 +298,9 @@ open class BaseNotificationBanner: UIView {
             
             switch UIDevice.current.orientation {
             case .portrait, .portraitUpsideDown:
-                width = window.width
-            case .landscapeLeft, .landscapeRight:
                 width = window.height
+            case .landscapeLeft, .landscapeRight:
+                width = window.width
             default:
                 break
             }
@@ -537,7 +537,7 @@ open class BaseNotificationBanner: UIView {
     */
     @objc private dynamic func onOrientationChanged() {
         guard let window = appWindow,
-              currentDeviceOrientationIsSupportedByApp() else { return }
+              currentDeviceOrientationIsSupportedByApp(), UIDevice.current.userInterfaceIdiom != .pad else { return }
         
         updateSpacerViewHeight()
 
