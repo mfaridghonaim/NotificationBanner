@@ -299,7 +299,7 @@ open class BaseNotificationBanner: UIView {
             switch UIDevice.current.orientation {
             case .portrait, .portraitUpsideDown:
                 width = window.width
-            case .landscapeLeft, landscapeRight:
+            case .landscapeLeft, .landscapeRight:
                 width = window.height
             default:
                 break
